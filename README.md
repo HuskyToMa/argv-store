@@ -1,4 +1,4 @@
-# @mj/argv_store
+# argv_store
 
 node命令行管理，操作参数以及对应的方法实现
 
@@ -12,6 +12,8 @@ node命令行管理，操作参数以及对应的方法实现
 |command|添加命令方法|(方法名， 解释信息， 调用方法)|
 |options|添加命令的参数, 使用前必须存在command|（参数名， 解释信息）|
 |parse|执行方法（必须调用）|null|
+
+### code
 
 ``` javascript
 

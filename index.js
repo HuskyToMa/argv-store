@@ -10,6 +10,7 @@ function argvStore() {
     }
 
     this.ver = '';
+    this.name = '';
     this.argvs = {};
     this.opts = {
         '-h': {
@@ -56,6 +57,11 @@ argvStore.prototype.options = function(type, description) {
     return this;
 }
 
+argvStore.prototype.name = function(name) {
+    this.name = name;
+    return this;
+}
+
 argvStore.prototype.command = function(type, description, cb) {
     if (!type) {
         throw new Error(chalk.red('你输入的command有误，请重新输入'))
@@ -98,11 +104,8 @@ argvStore.prototype.parse = function() {
 }
 
 argvStore.prototype.showHelp = function() {
-    console.log('使用方法：sy-cli [options]\n');
-    console.log('options：');
-    Object.keys(this.helpInfo).map(key => {
-        console.log(`  ${key}  ${this.helpInfo[key]}`)
-    })
+    console.log(`use：${this.name} [command] [options]\n`);
+    console.log('command：');
     Object.keys(this.commandCache).map(key => {
         console.log(`  ${key}  ${this.commandCache[key].description}`)
         const op = this.commandCache[key].helpInfo;
