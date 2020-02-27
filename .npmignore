@@ -1,0 +1,12 @@
+.history/
+node_modules/
+.gitignore
+dist/
+.DS_Store
+.npmrc
+
+# 开发中用到的文件夹，不上传npm
+assets/
+src/
+test/
+test.js

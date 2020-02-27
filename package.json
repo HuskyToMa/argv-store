@@ -1,0 +1,14 @@
+{
+  "name": "@mj/argv_store",
+  "version": "1.0.2",
+  "description": "",
+  "main": "argvStore.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mqx",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0"
+  }
+}
