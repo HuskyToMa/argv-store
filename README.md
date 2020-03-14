@@ -22,6 +22,8 @@ const program = new argvStore();
 const test = function() {
     // 获取到的输入的参数
     console.log(this.argv);
+    // 直接获取keyMap，即option以及他对应的参数
+    getKeyMap()
 }
 
 program

@@ -10,7 +10,7 @@ function argvStore() {
     }
 
     this.ver = '';
-    this.name = '';
+    this.n = '';
     this.argvs = {};
     this.opts = {
         '-h': {
@@ -58,7 +58,7 @@ argvStore.prototype.options = function(type, description) {
 }
 
 argvStore.prototype.name = function(name) {
-    this.name = name;
+    this.n = name;
     return this;
 }
 
@@ -92,7 +92,7 @@ argvStore.prototype.parse = function() {
         this.opts['-h'].callback.call(this);
         return ;
     }
-    const { commandKey } = this.argvs;
+    const { commandKey, keyMap } = this.argvs;
     if (commandKey) {
         const cmd = this.commandCache[commandKey];
         if (cmd) {
@@ -101,20 +101,39 @@ argvStore.prototype.parse = function() {
             throw new Error(chalk.red(`不存在此命令：${commandKey}`))
         }
     }
+    const keys = Object.keys(keyMap);
+    const keyMapLength = keys.length;
+
+    if (keyMapLength) {
+        keys.map(key => {
+            if (this.opts[key]) {
+                this.opts[key].callback.call(this);      
+            }
+        })
+    }
+
 }
 
 argvStore.prototype.showHelp = function() {
-    console.log(`use：${this.name} [command] [options]\n`);
-    console.log('command：');
+    console.log(`${this.n} [command] [options]\n`);
+    console.log('command and options：');
     Object.keys(this.commandCache).map(key => {
-        console.log(`  ${key}  ${this.commandCache[key].description}`)
+        console.log(`\n${key}  ${this.commandCache[key].description}`)
         const op = this.commandCache[key].helpInfo;
         if (op) {
             Object.keys(op).map(k => {
-                console.log(`    ${k}  ${op[k]}`)
+                console.log(`  ${k}  ${op[k]}`)
             })
         }
     })
+    console.log('\noptions\n');
+    Object.keys(this.helpInfo).map(key => {
+        console.log(`${key} ${this.helpInfo[key]}`);
+    })
+}
+
+argvStore.prototype.getKeyMap = function() {
+    return this.argvs.keyMap
 }
 
 argvStore.prototype.getVersion = function() {
