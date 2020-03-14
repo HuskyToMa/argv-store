@@ -1,6 +1,6 @@
 {
   "name": "argv_store",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "命令行参数管理工具",
   "main": "index.js",
   "keywords": ["nodejs"],
