@@ -11,7 +11,6 @@ const getArgv = () => {
     if (argv.length <= 2) {
         return {};
     }
-    console.log(argv);
     const keyMap = {};
     let commandKey = ~argv[2].indexOf('-') ? '' : argv[2];
     if (argv.length >= 3) {
