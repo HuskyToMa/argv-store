@@ -11,16 +11,20 @@ const getArgv = () => {
     if (argv.length <= 2) {
         return {};
     }
-
+    console.log(argv);
     const keyMap = {};
     let commandKey = ~argv[2].indexOf('-') ? '' : argv[2];
-    for(let i = 0; i < argv.length; i++) {
-        if (argv[i].indexOf('--') === 0 || argv[i].indexOf('-') === 0) {
-            keyMap[argv[i]] = argv[i+1] ? 
-                /^\-|\-\-/.test(argv[i+1]) ? 
-                    '' : 
-                    argv[i+1] :
-                '';
+    if (argv.length >= 3) {
+        for(let i = 3; i < argv.length; i++) {
+            if (argv[i].indexOf('--') === 0 || argv[i].indexOf('-') === 0) {
+                keyMap[argv[i]] = argv[i+1] ? 
+                    /^\-|\-\-/.test(argv[i+1]) ? 
+                        '' : 
+                        argv[i+1] :
+                    '';
+            } else {
+                keyMap[argv[i]] = '';
+            }
         }
     }
     return {
