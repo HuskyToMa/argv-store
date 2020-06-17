@@ -38,10 +38,6 @@ function argvStore() {
 argvStore.prototype.options = function(type, description) {
 
     const types = type.split(' ');
-    if (types.length <= 1) {
-        throw new Error(chalk.red('选项类型书写格式不正确，请重新编写'));
-    }
-
     types.map(item => {
 
         if (this.currentCommand) {
