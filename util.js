@@ -12,7 +12,7 @@ const getArgv = () => {
         return {};
     }
     const keyMap = {};
-    let commandKey = ~argv[2].indexOf('-') ? '' : argv[2];
+    let commandKey = argv[2].indexOf('-') === 0 ? '' : argv[2];
     if (argv.length >= 3) {
         for(let i = 3; i < argv.length; i++) {
             if (argv[i].indexOf('--') === 0 || argv[i].indexOf('-') === 0) {
